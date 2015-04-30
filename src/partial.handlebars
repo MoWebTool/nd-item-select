@@ -1,0 +1,30 @@
+<div class="{{classPrefix}}-selected {{classPrefix}}-container-item" >
+    <ul class="{{classPrefix}}-list" data-role="selected-content" style="width:{{width}}px;height:{{height}}px">
+      {{#each selectedList}}
+         {{> item}}
+      {{/each}}
+    </ul>
+    <p class="{{classPrefix}}-count">已选<span>{{selectedList.length}}</span>项</p>
+</div>
+
+
+<div class="{{classPrefix}}-buttons {{classPrefix}}-container-item">
+    <ul class="{{classPrefix}}-buttons" data-role="op-buttons"  style="height:{{height}}px;">
+      {{#each buttons}}
+        <li class="{{@root.classPrefix}}-button {{#if cls}}{{cls}}{{/if}}">
+            <button type="button" title="{{#if title}}{{title}}{{/if}}" data-role="{{role}}"
+                    >{{text}}</button>
+        </li>
+      {{/each}}
+    </ul>
+</div>
+
+
+<div class="{{classPrefix}}-unSelected {{classPrefix}}-container-item">
+    <ul class="{{classPrefix}}-list" data-role="unSelected-content"  style="width:{{width}}px;height:{{height}}px">
+      {{#each unSelectList}}
+        {{> item}}
+      {{/each}}
+    </ul>
+    <p class="{{classPrefix}}-count">可选项</p>
+</div>
