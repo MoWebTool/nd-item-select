@@ -15,7 +15,7 @@ var KEY_MAP = {
 var multiSelect = Widget.extend({
   Implements: [Template],
   templatePartials: {
-    item: require('./item.handlebars')
+    item: require('./src/item.handlebars')
   },
   attrs: {
     trigger: null,
@@ -45,9 +45,9 @@ var multiSelect = Widget.extend({
       text: '↓',
       title: '下移'
     }],
-    template: require('./select.handlebars'),
+    template: require('./src/select.handlebars'),
     partial: function (data) {
-      var template = require('./partial.handlebars');
+      var template = require('./src/partial.handlebars');
       return template(data, {
         partials: this.templatePartials
       });
