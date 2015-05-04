@@ -1,3 +1,8 @@
+/**
+ * @module: nd-item-select
+ * @author: lzhengms <lzhengms@gmail.com> - 2015-04-30 15:11:38
+ */
+
 'use strict';
 
 var $ = require('jquery'),
