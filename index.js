@@ -74,8 +74,8 @@ var multiSelect = Widget.extend({
     var model = {};
     model.classPrefix = this.get('classPrefix');
     model.buttons = this.get('buttons');
-    model['selectedList'] = data['selectedList'] ? data['selectedList'] : [];
-    model['unSelectList'] = data['unSelectList'] ? data['unSelectList'] : [];
+    model['selectedList'] = data['selectedList'] || [];
+    model['unSelectList'] = data['unSelectList'] || [];
     model['width'] = this.get('width');
     model['height'] = this.get('height');
     return model;
