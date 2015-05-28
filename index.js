@@ -57,7 +57,7 @@ var multiSelect = Widget.extend({
         partials: this.templatePartials
       });
     },
-    insertInto: function (element, parentNode) {
+    insertInto: function (element) {
       this.get('trigger').after(element).hide();
     }
   },
@@ -99,7 +99,7 @@ var multiSelect = Widget.extend({
     this.$('[data-role=container]').html(this.get('partial').call(this, this.get('model')));
   },
 
-  add: function (e) {
+  add: function () {
     var that = this,
       checkRepeat = this.get('checkRepeat'),
       isRemove = this.get('isRemove'),
@@ -108,13 +108,13 @@ var multiSelect = Widget.extend({
       selectedLength = selectedList.length,
       list = this.getCurUnSelectedItems(),
       length = list.length,
-      maxCount = this.get('maxCount');
+      maxCount = this.get('maxCount')||99999;
 
     if (!length) {
       Alert.show('必须从可选项中选择一项', null, {title: '提示'});
     } else {
       if (maxCount < +selectedLength + length) {
-        Alert.show('不能超过最大奖项' + maxCount + '数量', null, {title: '提示'});
+        Alert.show('不能选择超过设置的最大数量' + maxCount , null, {title: '提示'});
         return;
       }
       $.each(list, function (i, item) {
@@ -143,9 +143,8 @@ var multiSelect = Widget.extend({
 
   },
 
-  remove: function (e) {
+  remove: function () {
     var that = this,
-      selectCls = this.get('selectCls'),
       model = this.get('model'),
       list = this.getCurSelectedItems(),
       length = list.length,
@@ -193,7 +192,7 @@ var multiSelect = Widget.extend({
     this._select(target, key);
   },
 
-  up: function (e) {
+  up: function () {
     var list = this.getCurSelectedItems(), length = list.length;
     if (!length || length > 1) {
       Alert.show('必须从已选项中选择一项且只能一项', null, {title: '提示'});
@@ -210,7 +209,7 @@ var multiSelect = Widget.extend({
 
   },
 
-  down: function (e) {
+  down: function () {
     var list = this.getCurSelectedItems(), length = list.length;
     if (!length || length > 1) {
       Alert.show('必须从已选项中选择一项且只能一项', null, {title: '提示'});
@@ -278,7 +277,7 @@ var multiSelect = Widget.extend({
 
   getCurSelectedItems: function () {
     //获取已选列表中，当前选中的项
-    return this._getSelectedCon().find('.' + this.get('selectCls') + '[data-role=item]')
+    return this._getSelectedCon().find('.' + this.get('selectCls') + '[data-role=item]');
   },
 
   getUnSelectedItems: function () {
@@ -288,11 +287,11 @@ var multiSelect = Widget.extend({
 
   getCurUnSelectedItems: function () {
     //获取未选列表中，当前选中的项
-    return this._getUnSelectedCon().find('.' + this.get('selectCls') + '[data-role=item]')
+    return this._getUnSelectedCon().find('.' + this.get('selectCls') + '[data-role=item]');
   },
 
   getValues: function () {
-    return $.map(this.getSelectedItems(), function (item, i) {
+    return $.map(this.getSelectedItems(), function (item) {
       return $(item).data('value');
     });
   },
