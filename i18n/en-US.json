@@ -1,0 +1,21 @@
+{
+  "←": "←",
+  "添加": "Add",
+  "→": "→",
+  "移除": "Remove",
+  "↑": "↑",
+  "上移": "Move Up",
+  "↓": "↓",
+  "下移": "Move Down",
+  "必须从可选项中选择一项": "Please select one from the selectable items.",
+  "提示": "Hint",
+  "不能超过最大奖项": "Don't exceed the maximum number of prizes.",
+  "数量": "Amount",
+  "必须从已选项中选择一项": "Please select one from the selected items.",
+  "必须从已选项中选择一项且只能一项": "Please only select one from the selected items.",
+  "已经在第一项了": "This is the first item.",
+  "已经是最后一项了": "This is the last item.",
+  "已选": "Selected",
+  "项": ".",
+  "可选项": "Selectable"
+}
