@@ -1,21 +1,19 @@
 /**
- * @module: nd-item-select
- * @author: lzhengms <lzhengms@gmail.com> - 2015-04-30 15:11:38
+ * @module ItemSelect
+ * @author lzhengms <lzhengms@gmail.com>
  */
 
 'use strict';
 
-var $ = require('jquery'),
-  Widget = require('nd-widget'),
-  Template = require('nd-template'),
-  Alert = require('nd-alert');
-
+var $ = require('jquery');
+var Widget = require('nd-widget');
+var Template = require('nd-template');
+var debug = require('nd-debug');
 
 var KEY_MAP = {
   UP: 38,
   DOWN: 40
 };
-
 
 var multiSelect = Widget.extend({
   Implements: [Template],
@@ -26,11 +24,11 @@ var multiSelect = Widget.extend({
     trigger: null,
     model: {},
     data: {},
-    maxCount: null,//已选列表，最多允许选择多少个
-    height: null,//已选和可选框的高度
-    width: null,//已选和可选框的宽度
-    checkRepeat: true,//已选框是否判重。。未选框都是要判重的
-    isRemove: true,//从未选框->已选框，是否要移除未选列表中的数据
+    maxCount: null, //已选列表，最多允许选择多少个
+    // height: null,//已选和可选框的高度
+    // width: null,//已选和可选框的宽度
+    checkRepeat: true, //已选框是否判重。。未选框都是要判重的
+    isRemove: true, //从未选框->已选框，是否要移除未选列表中的数据
     classPrefix: 'ui-multi-select',
     selectCls: 'ui-multi-item-selected',
     buttons: [{
@@ -51,26 +49,26 @@ var multiSelect = Widget.extend({
       title: '下移'
     }],
     template: require('./src/select.handlebars'),
-    partial: function (data) {
+    partial: function(data) {
       var template = require('./src/partial.handlebars');
       return template(data, {
         partials: this.templatePartials
       });
     },
-    insertInto: function (element) {
+    insertInto: function(element) {
       this.get('trigger').after(element).hide();
     }
   },
   events: {
-    'click [data-role=add]': 'add',
-    'click [data-role=remove]': 'remove',
-    'click [data-role=up]': 'up',
-    'click [data-role=down]': 'down',
-    'click [data-role=item]': 'select',
-    'keydown [data-role=item]': 'onKey'
+    'click [data-role="add"]': 'add',
+    'click [data-role="remove"]': 'remove',
+    'click [data-role="up"]': 'up',
+    'click [data-role="down"]': 'down',
+    'click [data-role="item"]': 'select',
+    'keydown [data-role="item"]': 'onKey'
   },
 
-  _completeModel: function (data) {
+  _completeModel: function(data) {
     var model = {};
     model.classPrefix = this.get('classPrefix');
     model.buttons = this.get('buttons');
@@ -81,25 +79,25 @@ var multiSelect = Widget.extend({
     return model;
   },
 
-  _onRenderData: function (data) {
+  _onRenderData: function(data) {
     this.set('model', this._completeModel(data));
-    var model=this.get('model');
+    var model = this.get('model');
 
     if (this.get('isRemove')) {
-      $.each(model['selectedList'],function(i,selectItem){
-        model['unSelectList']= $.grep(model['unSelectList'],function(unSelectItem){
-          return unSelectItem.value!==selectItem.value&&unSelectItem;
+      $.each(model['selectedList'], function(i, selectItem) {
+        model['unSelectList'] = $.grep(model['unSelectList'], function(unSelectItem) {
+          return unSelectItem.value !== selectItem.value && unSelectItem;
         });
       });
     }
     this._rendPartial();
   },
 
-  _rendPartial: function () {
-    this.$('[data-role=container]').html(this.get('partial').call(this, this.get('model')));
+  _rendPartial: function() {
+    this.$('[data-role="container"]').html(this.get('partial').call(this, this.get('model')));
   },
 
-  add: function () {
+  add: function() {
     var that = this,
       checkRepeat = this.get('checkRepeat'),
       isRemove = this.get('isRemove'),
@@ -108,16 +106,16 @@ var multiSelect = Widget.extend({
       selectedLength = selectedList.length,
       list = this.getCurUnSelectedItems(),
       length = list.length,
-      maxCount = this.get('maxCount')||99999;
+      maxCount = this.get('maxCount') || 99999;
 
     if (!length) {
-      Alert.show('必须从可选项中选择一项', null, {title: '提示'});
+      debug.error('必须从可选项中选择一项');
     } else {
       if (maxCount < +selectedLength + length) {
-        Alert.show('不能选择超过设置的最大数量' + maxCount , null, {title: '提示'});
+        debug.error('不能选择超过设置的最大数量' + maxCount);
         return;
       }
-      $.each(list, function (i, item) {
+      $.each(list, function(i, item) {
         item = $(item);
         var index = item.index(),
           value = item.data('value'),
@@ -127,15 +125,21 @@ var multiSelect = Widget.extend({
           //判重
           if (!that._checkRepeat(selectedList, item)) {
             //增加已选列表中的选项
-            model['selectedList'].push({value: value, text: text});
+            model['selectedList'].push({
+              value: value,
+              text: text
+            });
           }
         } else {
           //增加已选列表中的选项
-          model['selectedList'].push({value: value, text: text});
+          model['selectedList'].push({
+            value: value,
+            text: text
+          });
         }
         //移除未选列表中的选项
         if (isRemove) {
-          model['unSelectList'].splice(i===0?index:index-i, 1);
+          model['unSelectList'].splice(i === 0 ? index : index - i, 1);
         }
       });
       this._rendPartial();
@@ -143,7 +147,7 @@ var multiSelect = Widget.extend({
 
   },
 
-  remove: function () {
+  remove: function() {
     var that = this,
       model = this.get('model'),
       list = this.getCurSelectedItems(),
@@ -151,10 +155,10 @@ var multiSelect = Widget.extend({
       unSelectedList = this.getUnSelectedItems();
 
     if (!length) {
-      Alert.show('必须从已选项中选择一项', null, {title: '提示'});
+      debug.error('必须从已选项中选择一项');
     } else {
       //数目减少
-      $.each(list, function (i, item) {
+      $.each(list, function(i, item) {
         item = $(item);
         var index = item.index(),
           value = item.data('value'),
@@ -162,16 +166,19 @@ var multiSelect = Widget.extend({
         //判重
         if (!that._checkRepeat(unSelectedList, item)) {
           //增加未选列表中的选项
-          model['unSelectList'].push({value: value, text: text});
+          model['unSelectList'].push({
+            value: value,
+            text: text
+          });
         }
         //移除已选列表中的选项
-        model['selectedList'].splice(i===0?index:index-i, 1);
+        model['selectedList'].splice(i === 0 ? index : index - i, 1);
       });
       this._rendPartial();
     }
   },
 
-  _select: function (target, key) {
+  _select: function(target, key) {
 
     var selectCls = this.get('selectCls');
 
@@ -186,47 +193,48 @@ var multiSelect = Widget.extend({
     }
   },
 
-  select: function (e) {
+  select: function(e) {
     var target = $(e.currentTarget),
       key = e.ctrlKey || e.metaKey;
     this._select(target, key);
   },
 
-  up: function () {
-    var list = this.getCurSelectedItems(), length = list.length;
+  up: function() {
+    var list = this.getCurSelectedItems(),
+      length = list.length;
     if (!length || length > 1) {
-      Alert.show('必须从已选项中选择一项且只能一项', null, {title: '提示'});
+      debug.error('必须从已选项中选择一项且只能一项');
     } else {
       var target = list.eq(0),
         prev = target.prev();
       if (prev && prev.length) {
         target.insertBefore(prev);
       } else {
-        Alert.show('已经在第一项了', null, {title: '提示'});
+        debug.info('已经在第一项了');
       }
     }
 
 
   },
 
-  down: function () {
-    var list = this.getCurSelectedItems(), length = list.length;
+  down: function() {
+    var list = this.getCurSelectedItems(),
+      length = list.length;
     if (!length || length > 1) {
-      Alert.show('必须从已选项中选择一项且只能一项', null, {title: '提示'});
+      debug.error('必须从已选项中选择一项且只能一项');
     } else {
       var target = list.eq(0),
         next = target.next();
       if (next && next.length) {
         target.insertAfter(next);
       } else {
-        Alert.show('已经是最后一项了', null, {title: '提示'});
+        debug.info('已经是最后一项了');
       }
     }
 
   },
 
-
-  onKey: function (e) {
+  onKey: function(e) {
     var target = $(e.currentTarget);
     e.preventDefault();
 
@@ -251,9 +259,9 @@ var multiSelect = Widget.extend({
     }
   },
 
-  _checkRepeat: function (list, item) {
+  _checkRepeat: function(list, item) {
     var isRepeat = false;
-    $.each(list, function (i, v) {
+    $.each(list, function(i, v) {
       if ('' + $(v).data('value') === '' + item.data('value')) {
         isRepeat = true;
         return false;
@@ -262,41 +270,41 @@ var multiSelect = Widget.extend({
     return isRepeat;
   },
 
-  _getSelectedCon: function () {
-    return this.$('[data-role=selected-content]');
+  _getSelectedCon: function() {
+    return this.$('[data-role="selected-content"]');
   },
 
-  _getUnSelectedCon: function () {
-    return this.$('[data-role=unSelected-content]');
+  _getUnSelectedCon: function() {
+    return this.$('[data-role="unselected-content"]');
   },
 
-  getSelectedItems: function () {
+  getSelectedItems: function() {
     //获取已选列表中的选项
-    return this._getSelectedCon().find('[data-role=item]');
+    return this._getSelectedCon().find('[data-role="item"]');
   },
 
-  getCurSelectedItems: function () {
+  getCurSelectedItems: function() {
     //获取已选列表中，当前选中的项
-    return this._getSelectedCon().find('.' + this.get('selectCls') + '[data-role=item]');
+    return this._getSelectedCon().find('.' + this.get('selectCls') + '[data-role="item"]');
   },
 
-  getUnSelectedItems: function () {
+  getUnSelectedItems: function() {
     //获取未选列表中的选项
-    return this._getUnSelectedCon().find('[data-role=item]');
+    return this._getUnSelectedCon().find('[data-role="item"]');
   },
 
-  getCurUnSelectedItems: function () {
+  getCurUnSelectedItems: function() {
     //获取未选列表中，当前选中的项
-    return this._getUnSelectedCon().find('.' + this.get('selectCls') + '[data-role=item]');
+    return this._getUnSelectedCon().find('.' + this.get('selectCls') + '[data-role="item"]');
   },
 
-  getValues: function () {
-    return $.map(this.getSelectedItems(), function (item) {
+  getValues: function() {
+    return $.map(this.getSelectedItems(), function(item) {
       return $(item).data('value');
     });
   },
 
-  setValues: function () {
+  setValues: function() {
     this.get('trigger').val(this.getValues().join(','));
   }
 

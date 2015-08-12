@@ -1,0 +1,159 @@
+[
+
+  {
+    "api": "[GET]/m/jackpots",
+    "name": "奖池列表",
+    "level": "jackpot",
+    "module": "lottery"
+  }, {
+    "api": "[GET]/m/jackpots/{turnid}",
+    "name": "获取奖池信息",
+    "level": "jackpot/get",
+    "module": "lottery"
+  }, {
+    "api": "[POST]/m/jackpots",
+    "name": "新增奖池",
+    "level": "jackpot/post",
+    "module": "lottery"
+  }, {
+    "api": "[PATCH]/m/jackpots/{turnid}",
+    "name": "修改奖池",
+    "level": "jackpot/patch",
+    "module": "lottery"
+  }, {
+    "api": "[DELETE]/m/jackpots/{turnid}",
+    "name": "删除奖池",
+    "level": "jackpot/delete",
+    "module": "lottery"
+  },
+
+  {
+    "api": "[GET]/m/jackpots/{turnid}/prizes",
+    "name": "奖池中的奖品列表",
+    "level": "jackpot/prize",
+    "module": "lottery"
+  }, {
+    "api": "[GET]/m/jackpots/{turnid}/prizes/{id}",
+    "name": "获取奖池奖品信息",
+    "level": "jackpot/prize/get",
+    "module": "lottery"
+  }, {
+    "api": "[POST]/m/jackpots/{turnid}/prizes",
+    "name": "新增奖池奖品",
+    "level": "jackpot/prize/post",
+    "module": "lottery"
+  }, {
+    "api": "[PATCH]/m/jackpots/{turnid}/prizes/{id}",
+    "name": "修改奖池中的奖品",
+    "level": "jackpot/prize/patch",
+    "module": "lottery"
+  }, {
+    "api": "[DELETE]/m/jackpots/{turnid}/prizes/{id}",
+    "name": "移除奖池中的奖品",
+    "level": "jackpot/prize/delete",
+    "module": "lottery"
+  },
+
+  {
+    "api": "[GET]/m/categories",
+    "name": "奖项列表",
+    "level": "category",
+    "module": "lottery"
+  }, {
+    "api": "[GET]/m/categories/{cate_id}",
+    "name": "获取奖项信息",
+    "level": "category/get",
+    "module": "lottery"
+  }, {
+    "api": "[POST]/m/categories",
+    "name": "新增奖项",
+    "level": "category/post",
+    "module": "lottery"
+  }, {
+    "api": "[PATCH]/m/categories/{cate_id}",
+    "name": "修改奖项",
+    "level": "category/patch",
+    "module": "lottery"
+  }, {
+    "api": "[DELETE]/m/categories/{cate_id}",
+    "name": "删除奖项",
+    "level": "category/delete",
+    "module": "lottery"
+  },
+
+  {
+    "api": "[GET]/m/prizes",
+    "name": "奖品列表",
+    "level": "prize",
+    "module": "lottery"
+  }, {
+    "api": "[GET]/m/prizes/{prize_id}",
+    "name": "获取奖品信息",
+    "level": "prize/get",
+    "module": "lottery"
+  }, {
+    "api": "[POST]/m/prizes",
+    "name": "新增奖品",
+    "level": "prize/post",
+    "module": "lottery"
+  }, {
+    "api": "[PATCH]/m/prizes/{prize_id}",
+    "name": "修改奖品信息",
+    "level": "prize/patch",
+    "module": "lottery"
+  }, {
+    "api": "[DELETE]/m/prizes/{prize_id}",
+    "name": "删除奖品",
+    "level": "prize/delete",
+    "module": "lottery"
+  },
+
+  {
+    "api": "[GET]/m/plogs",
+    "name": "中奖记录列表",
+    "level": "plog",
+    "module": "lottery"
+  }, {
+    "api": "[PATCH]/m/plogs/{prize_log_id}",
+    "name": "修改中奖记录状态",
+    "level": "plog/patch",
+    "module": "lottery"
+  },
+
+  {
+    "api": "[GET]/m/blacklists",
+    "name": "黑名单用户列表",
+    "level": "blacklist",
+    "module": "lottery"
+  }, {
+    "api": "[GET]/m/blacklists/{id}",
+    "name": "获取黑名单用户详情",
+    "level": "blacklist/get",
+    "module": "lottery"
+  }, {
+    "api": "[POST]/m/blacklists",
+    "name": "新增黑名单用户",
+    "level": "blacklist/post",
+    "module": "lottery"
+  }, {
+    "api": "[DELETE]/m/blacklists/{id}",
+    "name": "删除黑名单用户",
+    "level": "blacklist/delete",
+    "module": "lottery"
+  },
+
+  {
+    "api": "[GET]/m/itemtypes",
+    "name": "物品类型列表",
+    "level": "itemtype",
+    "module": "pack"
+  },
+
+  {
+    "api": "[POST]/m/fsession",
+    "name": "上传文件",
+    "level": "session",
+    "module": "lottery"
+  }
+
+]
