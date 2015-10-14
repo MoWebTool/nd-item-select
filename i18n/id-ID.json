@@ -1,0 +1,19 @@
+{
+  "←": "←",
+  "↑": "↑",
+  "→": "→",
+  "↓": "↓",
+  "上移": "Pindahkan keatas",
+  "下移": "Pindahkan kebawah",
+  "不能选择超过设置的最大数量": "Tidak dapat melibihi batas ",
+  "可选项": "Dapat dipilih",
+  "已经在第一项了": "ini item pertama.",
+  "已经是最后一项了": "ini item pertama.",
+  "已选": "Dipilih",
+  "必须从可选项中选择一项": "Pilih salah satu.",
+  "必须从已选项中选择一项": "Pilih salah satu.",
+  "必须从已选项中选择一项且只能一项": "Pilih salah satu.",
+  "添加": "Tambahkan",
+  "移除": "Hapus",
+  "项": "item(s)"
+}
