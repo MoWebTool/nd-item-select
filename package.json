@@ -1,32 +1,89 @@
 {
-  "name": "nd-item-select",
-  "version": "1.0.1",
-  "description": "item select suport add,remove,up,down",
-  "keywords": [],
-  "homepage": "https://github.com/ndfront/nd-item-select",
-  "author": {
-    "name": "lzhengms",
-    "email": "lzhengms@gmail.com"
+  "_args": [
+    [
+      "nd-item-select@1.0.1",
+      "g:\\projects\\nd-project-admin\\branch\\src\\main\\js"
+    ]
+  ],
+  "_cnpm_publish_time": 1462349115738,
+  "_from": "nd-item-select@1.0.1",
+  "_id": "nd-item-select@1.0.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/nd-item-select",
+  "_nodeVersion": "5.3.0",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/nd-item-select-1.0.1.tgz_1462349113184_0.9644208869431168"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ndfront/nd-item-select.git"
+  "_npmUser": {
+    "email": "lzhengms@gmail.com",
+    "name": "lzhengms"
+  },
+  "_npmVersion": "3.3.12",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "nd-item-select",
+    "raw": "nd-item-select@1.0.1",
+    "rawSpec": "1.0.1",
+    "scope": null,
+    "spec": "1.0.1",
+    "type": "version"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_shasum": "123fe0d657ba251b56e7bb76c9ba517b86a11fe3",
+  "_shrinkwrap": null,
+  "_spec": "nd-item-select@1.0.1",
+  "_where": "g:\\projects\\nd-project-admin\\branch\\src\\main\\js",
+  "author": {
+    "email": "lzhengms@gmail.com",
+    "name": "lzhengms"
   },
   "bugs": {
     "url": "https://github.com/ndfront/nd-item-select/issues"
   },
-  "licenses": "MIT",
+  "dependencies": {},
+  "description": "item select suport add,remove,up,down",
   "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "noattachment": false,
+    "shasum": "123fe0d657ba251b56e7bb76c9ba517b86a11fe3",
+    "size": 4157,
+    "tarball": "http://registry.npm.taobao.org/nd-item-select/download/nd-item-select-1.0.1.tgz"
+  },
+  "gitHead": "561634195674786dc4c6240ccbcf8e46706e25de",
+  "homepage": "https://github.com/ndfront/nd-item-select",
+  "keywords": [],
+  "licenses": "MIT",
+  "maintainers": [
+    {
+      "name": "lzhengms",
+      "email": "lzhengms@gmail.com"
+    }
+  ],
+  "name": "nd-item-select",
+  "optionalDependencies": {},
+  "publish_time": 1462349115738,
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ndfront/nd-item-select.git"
+  },
+  "scripts": {},
   "spm": {
-    "main": "index.js",
     "dependencies": {
       "jquery": "1.11.1",
-      "nd-widget": "1.0.0",
+      "nd-debug": "1.0.0",
       "nd-template": "1.0.0",
-      "nd-debug": "1.0.0"
+      "nd-widget": "1.0.0"
     },
     "devDependencies": {
       "expect.js": "0.3.1"
-    }
-  }
+    },
+    "main": "index.js"
+  },
+  "version": "2.0.3"
 }

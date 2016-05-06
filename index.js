@@ -15,15 +15,24 @@ var KEY_MAP = {
   DOWN: 40
 };
 
+//  isSearch: true, 在可选项列表中是否显示搜索框
 var multiSelect = Widget.extend({
   Implements: [Template],
   templatePartials: {
-    item: require('./src/item.handlebars')
+    item: require('./src/item.handlebars'),
+    search: require('./src/search.handlebars'),
+    selected: require('./src/selected.handlebars'),
+    unSelected: require('./src/unSelected.handlebars')
+  },
+  templateHelpers: {
+    equal: require('./src/equal')
   },
   attrs: {
     trigger: null,
     model: {},
     data: {},
+    proxy: null,
+    position: 'left', //可选项在左边设置为left，右边设置为right，默认left
     maxCount: null, //已选列表，最多允许选择多少个
     // height: null,//已选和可选框的高度
     // width: null,//已选和可选框的宽度
@@ -31,6 +40,18 @@ var multiSelect = Widget.extend({
     isRemove: true, //从未选框->已选框，是否要移除未选列表中的数据
     classPrefix: 'ui-multi-select',
     selectCls: 'ui-multi-item-selected',
+    plugins: require('./src/plugins/search'),
+    pluginCfg: {
+      search: {
+        disabled: false,
+        searchProxy: null
+      }
+    },
+    initialParams: {
+      $offset: 0,
+      $limit: 20,
+      $count: true
+    },
     buttons: [{
       role: 'add',
       text: '←',
@@ -57,6 +78,14 @@ var multiSelect = Widget.extend({
     },
     insertInto: function(element) {
       this.get('trigger').after(element).hide();
+    },
+    //过滤数据
+    inFilter: function(){
+       return data
+    },
+    //过滤数据
+    outFilter: function(data) {
+      return data
     }
   },
   events: {
@@ -68,14 +97,28 @@ var multiSelect = Widget.extend({
     'keydown [data-role="item"]': 'onKey'
   },
 
+  initPlugins: function() {
+    var pluginCfg = this.get('pluginCfg')
+    if (!pluginCfg.search.disabled) {
+      this.set('isSearch',true)
+    }
+    multiSelect.superclass.initPlugins.call(this)
+  },
+
+  setup: function(){
+    // 设置最终状态
+    this.set('params', $.extend({},this.get('initialParams'),this.get('params')))
+  },
+
   _completeModel: function(data) {
     var model = {};
-    model.classPrefix = this.get('classPrefix');
-    model.buttons = this.get('buttons');
+    var that = this;
     model['selectedList'] = data['selectedList'] || [];
     model['unSelectList'] = data['unSelectList'] || [];
-    model['width'] = this.get('width');
-    model['height'] = this.get('height');
+    ['classPrefix', 'buttons', 'width', 'height', 'position', 'isSearch']
+    .forEach(function(key) {
+      model[key] = that.get(key)
+    })
     return model;
   },
 
@@ -306,6 +349,10 @@ var multiSelect = Widget.extend({
 
   setValues: function() {
     this.get('trigger').val(this.getValues().join(','));
+  },
+
+  addEvents: function(options,fn){
+    fn && this.delegateEvents('click [data-role="' + options.role + '"]', fn)
   }
 
 });

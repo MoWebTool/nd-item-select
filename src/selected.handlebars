@@ -1,0 +1,8 @@
+<div class="{{classPrefix}}-selected {{classPrefix}}-container-item" >
+  <ul class="{{classPrefix}}-list" data-role="selected-content">
+    {{#each selectedList}}
+     {{> item}}
+    {{/each}}
+  </ul>
+  <p class="{{classPrefix}}-count">已选<span>{{selectedList.length}}</span>项</p>
+</div>

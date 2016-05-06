@@ -1,0 +1,9 @@
+<div class="{{classPrefix}}-unselected {{classPrefix}}-container-item">
+    {{> search}}
+  <ul class="{{classPrefix}}-list" data-role="unselected-content">
+    {{#each unSelectList}}
+    {{> item}}
+    {{/each}}
+  </ul>
+  <p class="{{classPrefix}}-count">可选项</p>
+</div>

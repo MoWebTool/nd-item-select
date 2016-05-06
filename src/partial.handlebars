@@ -1,11 +1,8 @@
-<div class="{{classPrefix}}-selected {{classPrefix}}-container-item" >
-  <ul class="{{classPrefix}}-list" data-role="selected-content">
-    {{#each selectedList}}
-     {{> item}}
-    {{/each}}
-  </ul>
-  <p class="{{classPrefix}}-count">已选<span>{{selectedList.length}}</span>项</p>
-</div>
+{{#equal position 'left'}}
+  {{> unSelected}}
+{{else}}
+  {{> selected}}
+{{/equal}}
 
 <div class="{{classPrefix}}-buttons {{classPrefix}}-container-item">
   <ul class="{{classPrefix}}-buttons" data-role="op-buttons">
@@ -17,11 +14,8 @@
   </ul>
 </div>
 
-<div class="{{classPrefix}}-unselected {{classPrefix}}-container-item">
-  <ul class="{{classPrefix}}-list" data-role="unselected-content">
-    {{#each unSelectList}}
-    {{> item}}
-    {{/each}}
-  </ul>
-  <p class="{{classPrefix}}-count">可选项</p>
-</div>
+{{#equal position 'left'}}
+  {{> selected}}
+{{else}}
+  {{> unSelected}}
+{{/equal}}
