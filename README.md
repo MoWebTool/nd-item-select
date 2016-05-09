@@ -81,7 +81,7 @@ var itemCmp = new ItemSelect({
       item.value = item.project_id
       return item
     })
-    data.SelectList = this.get('data').selectedList
+    data.selectedList = this.get('data').selectedList
     return data
   },
   buttons: [{
