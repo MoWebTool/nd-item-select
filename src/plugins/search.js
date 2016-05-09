@@ -32,6 +32,9 @@ module.exports = {
           key: val
         }))
       delete options.data.key
+      if (!val) {
+        delete options.data.$filter
+      }
 
       searchProxy.GET(options)
         .then(function(data) {

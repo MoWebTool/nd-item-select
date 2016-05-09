@@ -1,6 +1,6 @@
 {
   "name": "nd-item-select",
-  "version": "2.0.5",
+  "version": "2.0.7",
   "author": {
     "email": "lzhengms@gmail.com",
     "name": "lzhengms"
@@ -24,7 +24,6 @@
   },
   "main": "index.js",
   "dependencies": {
-    "handlebars": "^4.0.5",
     "nd-debug": "^3.0.1",
     "nd-jquery": "^2.2.2",
     "nd-template": "^3.0.1",
