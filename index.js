@@ -140,6 +140,17 @@ var multiSelect = Widget.extend({
     this.$('[data-role="container"]').html(this.get('partial').call(this, this.get('model')));
   },
 
+  _resetData: function(){
+    var model = this.get('model')
+    this.set('data',{
+    unSelectList: model['unSelectList'],
+    selectedList: model['selectedList']
+  }, {
+      silent: true
+    })
+
+  },
+
   add: function() {
     var that = this,
       checkRepeat = this.get('checkRepeat'),
@@ -185,6 +196,7 @@ var multiSelect = Widget.extend({
           model['unSelectList'].splice(i === 0 ? index : index - i, 1);
         }
       });
+      this._resetData();
       this._rendPartial();
     }
 
@@ -217,6 +229,7 @@ var multiSelect = Widget.extend({
         //移除已选列表中的选项
         model['selectedList'].splice(i === 0 ? index : index - i, 1);
       });
+      this._resetData();
       this._rendPartial();
     }
   },

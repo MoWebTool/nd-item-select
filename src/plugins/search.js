@@ -32,8 +32,10 @@ module.exports = {
           key: val
         }))
       delete options.data.key
-      if (!val) {
+      if (!$.trim(val)) {
         delete options.data.$filter
+      } else {
+        host.get('model').searchKey = val
       }
 
       searchProxy.GET(options)
