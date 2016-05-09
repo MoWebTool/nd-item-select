@@ -1,6 +1,6 @@
 {
   "name": "nd-item-select",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "author": {
     "email": "lzhengms@gmail.com",
     "name": "lzhengms"
@@ -17,7 +17,6 @@
     "url": "git+https://github.com/ndfront/nd-item-select.git"
   },
   "scripts": {
-    "prepublish": "npm run lint",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
     "test": "node ./node_modules/karma/bin/karma start ./karma.conf.js",
