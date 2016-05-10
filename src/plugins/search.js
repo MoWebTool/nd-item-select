@@ -34,9 +34,9 @@ module.exports = {
       delete options.data.key
       if (!$.trim(val)) {
         delete options.data.$filter
-      } else {
-        host.get('model').searchKey = val
       }
+
+      host.get('model').searchKey = val
 
       searchProxy.GET(options)
         .then(function(data) {
